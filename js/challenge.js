@@ -1,6 +1,27 @@
-setInterval(myTimer, 1000);
-let counter = 0
+let counter = 0;
 
-function myTimer() {
-    document.querySelector("#counter").innerText = counter++
-}
+window.addEventListener('DOMContentLoaded', (event) => {
+    displayTimer();
+    // pauseTimer();
+});
+
+
+ displayTimer();
+
+ function displayTimer() {   
+    let timerID = setInterval(myTimer, 1000);
+
+    function myTimer() {
+        document.querySelector("#counter").innerText = counter++
+        pauseTimer();
+    }
+
+    function pauseTimer() {
+        pauseButton = document.querySelector("#pause");
+        pauseButton.addEventListener("click", function(event) {
+            clearInterval(timerID);
+        })
+     }
+ }
+
+ 
