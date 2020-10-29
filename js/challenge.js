@@ -28,29 +28,27 @@ let timeRunning = setInterval(incrementSeconds, 1000);
   });
 
   // liking a number
- 
-
     
   like.addEventListener('click', function(event) {
-    if (paused == true) {
-      console.log("Paused, doing nothing when you click!")
-    } else {
+      if (paused == true) {
+        console.log("Paused, doing nothing when you click!")
+       } else {
    let holdSeconds = seconds;
-     // const theDisplay = document.getElementsByClassName("likes");
-   if (likedNumbers[holdSeconds] != undefined) {
-    let count = likedNumbers[holdSeconds];
-    count ++
-    likedNumbers[holdSeconds] = count;
-    let oldLi = document.getElementById(`${holdSeconds}`)
-    oldLi.textContent = `The number ${holdSeconds} was liked ${likedNumbers[holdSeconds]} times.`;
-    like.append(oldLi);
-   }
-   else {
+      const theDisplay = document.querySelector(".likes");
+       if (likedNumbers[holdSeconds] != undefined) {
+         let count = likedNumbers[holdSeconds];
+          count ++
+         likedNumbers[holdSeconds] = count;
+         let oldLi = document.getElementById(`${holdSeconds}`)
+         oldLi.textContent = `The number ${holdSeconds} was liked ${likedNumbers[holdSeconds]} times.`;
+         theDisplay.append(oldLi);
+        }
+        else {
    let newLi = document.createElement("li");
    newLi.id = holdSeconds;
    likedNumbers[holdSeconds] = 1;
    newLi.textContent = `The number ${holdSeconds} was liked.`;
-   like.append(newLi);
+   theDisplay.appendChild(newLi);
   }
 }
   });
