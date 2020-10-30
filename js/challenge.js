@@ -92,13 +92,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
         const formText = document.querySelector("#comment-input");
         const comments = document.querySelector("#list");
         const formBlock = document.querySelector("#comment-form");
-
         const newUl = document.createElement("ul");
         const newComment = document.createElement("li")
 
         newUl.append(newComment);
         comments.append(newUl);
-
 
         newComment.innerText = formText.value;
         formBlock.reset();
