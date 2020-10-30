@@ -20,12 +20,12 @@ plusButton.addEventListener("click", plusTimer);
 
 function pauseTimer() {
     if (timerSwitch === true) {
-    console.log("paused");
+    disableButtons();
     clearInterval(timerID);
     pauseButton.innerText = "resume";
     } else {
         timerID = setInterval(myTimer, 1000);
-        console.log("resume");
+        enableButtons();
         pauseButton.innerText = "pause"
     }
     timerSwitch = !timerSwitch;
@@ -39,6 +39,16 @@ function minusTimer() {
 function plusTimer() {
     console.log("plus");
     counterDisplay.innerText = counter++;
+}
+
+function disableButtons() {
+    minusButton.removeEventListener("click", minusTimer);
+    plusButton.removeEventListener("click", plusTimer);
+}
+
+function enableButtons() {
+    minusButton.addEventListener("click", minusTimer);
+    plusButton.addEventListener("click", plusTimer);
 }
 
 
