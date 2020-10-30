@@ -55,11 +55,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
     function disableButtons() {
         minusButton.removeEventListener("click", minusTimer);
         plusButton.removeEventListener("click", plusTimer);
+        heartButton.removeEventListener("click", likeNumber);
     }
 
     function enableButtons() {
         minusButton.addEventListener("click", minusTimer);
         plusButton.addEventListener("click", plusTimer);
+        heartButton.addEventListener("click", likeNumber);
     }
 
     function pause(){
@@ -101,12 +103,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         newComment.innerText = formText.value;
         formBlock.reset();
 
-
     }
-
-
-
-
 
 });
 
