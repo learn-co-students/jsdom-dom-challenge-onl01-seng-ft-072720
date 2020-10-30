@@ -18,7 +18,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
     heartButton.addEventListener("click", likeNumber);
 
     function myTimer() {
-        counterDisplay.innerText = counter++;
+        counterDisplay.innerText = ++counter;
+        
     }
 
 
@@ -38,14 +39,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
     function minusTimer() {
         // pause and resume are to remove clumsiness
         pause();
-        counterDisplay.innerText = counter--;
+        counterDisplay.innerText = --counter;
         resume();
     }
 
     function plusTimer() {
         // pause and resume are to remove clumsiness
         pause();
-        counterDisplay.innerText = counter++;
+        counterDisplay.innerText = ++counter;
         resume();
     }
 
@@ -70,10 +71,18 @@ window.addEventListener('DOMContentLoaded', (event) => {
     function likeNumber() {
         console.log(`liked ${counter}`)
         let div = document.querySelector("body > div");
-        p = document.createElement("p")
-        p.id=`${counter}`;
-        p.innerText = `x people have liked the number ${p.id}`;
-        div.prepend(p);
+        let p = document.createElement("p");
+        let likeText = document.getElementById(`${counter}`);
+
+        if (likeText === null) {
+            p.id=`${counter}`;
+            p.innerText = `1 person liked the number ${p.id}`;
+            div.prepend(p);
+        } else {
+            let numLikes = likeText.innerText.substring(0,1);
+            ++numLikes;
+            likeText.innerText = `${numLikes} people liked the number ${likeText.id}`
+        }
     }
 
 
