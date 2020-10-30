@@ -6,6 +6,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     const pauseButton = document.querySelector("#pause");
     const minusButton = document.querySelector("#minus");
     const plusButton = document.querySelector("#plus");
+    const heartButton = document.querySelector("#heart");
     let timerID = setInterval(myTimer, 1000);
 
 
@@ -16,15 +17,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
 pauseButton.addEventListener("click", pauseTimer);
 minusButton.addEventListener("click", minusTimer);
 plusButton.addEventListener("click", plusTimer);
+heartButton.addEventListener("click", likeNumber);
 
 
 function pauseTimer() {
     if (timerSwitch === true) {
     disableButtons();
-    clearInterval(timerID);
+    pause();
     pauseButton.innerText = "resume";
     } else {
-        timerID = setInterval(myTimer, 1000);
+        resume();
         enableButtons();
         pauseButton.innerText = "pause"
     }
@@ -32,13 +34,17 @@ function pauseTimer() {
 }
 
 function minusTimer() {
-    console.log("minus");
+    // pause and resume are to remove clumsiness
+    pause();
     counterDisplay.innerText = counter--;
+    resume();
 }
 
 function plusTimer() {
-    console.log("plus");
+    // pause and resume are to remove clumsiness
+    pause();
     counterDisplay.innerText = counter++;
+    resume();
 }
 
 function disableButtons() {
@@ -49,6 +55,18 @@ function disableButtons() {
 function enableButtons() {
     minusButton.addEventListener("click", minusTimer);
     plusButton.addEventListener("click", plusTimer);
+}
+
+function pause(){
+    clearInterval(timerID);
+}
+
+function resume() {
+    timerID = setInterval(myTimer, 1000);
+}
+
+function likeNumber() {
+    console.log(`liked ${counter}`)
 }
 
 
