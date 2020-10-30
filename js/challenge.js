@@ -7,6 +7,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     const minusButton = document.querySelector("#minus");
     const plusButton = document.querySelector("#plus");
     const heartButton = document.querySelector("#heart");
+    const commentButton = document.querySelector("#submit");
     let timerID = setInterval(myTimer, 1000);
 
 
@@ -16,6 +17,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     minusButton.addEventListener("click", minusTimer);
     plusButton.addEventListener("click", plusTimer);
     heartButton.addEventListener("click", likeNumber);
+    commentButton.addEventListener("click", addComment);
 
     function myTimer() {
         counterDisplay.innerText = ++counter;
@@ -83,6 +85,25 @@ window.addEventListener('DOMContentLoaded', (event) => {
             ++numLikes;
             likeText.innerText = `${numLikes} people liked the number ${likeText.id}`
         }
+    }
+
+    function addComment(e) {
+        e.preventDefault();
+        const formText = document.querySelector("#comment-input");
+        const comments = document.querySelector("#list");
+        const formBlock = document.querySelector("#comment-form");
+
+        const newUl = document.createElement("ul");
+        const newComment = document.createElement("li")
+
+        newUl.append(newComment);
+        comments.append(newUl);
+
+
+        newComment.innerText = formText.value;
+        formBlock.reset();
+
+
     }
 
 
