@@ -14,10 +14,11 @@ const commentDiv = document.getElementById("list")
 const pauseButton = document.getElementById("pause")
 const submitButton = document.getElementById("submit")
 
-let counterSet = setInterval(function(){
-    num += 1;
-    count.innerText = num.toString();
-}, 1000)
+let counterSet = setInterval(
+    function() {
+        num += 1;
+        count.innerText = num.toString();
+    }, 1000)
 
 addButton.addEventListener("click",
 function(e){
@@ -33,10 +34,13 @@ function (e){
 
 likeButton.addEventListener("click",
 function (e){
-    let likeCount = currentNum;
     const li = document.createElement("li")
-    li.textContent = `${num} has been liked <span>``</span> times`
+    li.hasAttribute('data-num');
+    li.getAttribute('data-num');
+    li.setAttribute('data-num', num); 
+    li.textContent = `${num} has been liked`
     ulLikes.appendChild(li)
+
 })
 
 const commentForm = document.getElementById("comment-form")
@@ -51,10 +55,26 @@ commentForm.addEventListener("submit", function(e){
 
 pauseButton.addEventListener("click",
 function (e){
-        clearInterval(counterSet)
-        pauseButton.textContent = "resume"
+    switch (pauseButton.textContent){
+        case " pause ":
+        clearInterval(counterSet);
+        pauseButton.textContent = " resume "
         addButton.disabled = true;
         subButton.disabled = true;
         likeButton.disabled = true;
         submitButton.disabled = true;
+        break;
+        case " resume ":
+        counterSet = setInterval(
+            function() {
+                num += 1;
+                count.innerText = num.toString();
+            }, 1000)
+        pauseButton.textContent = " pause "
+        addButton.disabled = false;
+        subButton.disabled = false;
+        likeButton.disabled = false;
+        submitButton.disabled = false;
+        break;
+    }
 })
