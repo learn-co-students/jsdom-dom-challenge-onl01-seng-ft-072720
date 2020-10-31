@@ -1,4 +1,3 @@
-  
 document.addEventListener("DOMContentLoaded", () => {
     const counter = document.querySelector("#counter");
     const minusButton = document.querySelector("#minus");
@@ -66,17 +65,19 @@ function likeNumber() {
     const heartButton = document.querySelector("#heart");
 
     pauseButton.addEventListener("click", function(){
-        if (!isPaused) {
+        if (!isPaused) {            
             isPaused = true;
             pauseButton.innerText = "resume"
             minusButton.disabled = true;
             plusButton.disabled = true;
             heartButton.disabled = true;
-        } else {
+            clearInterval(myVar);
+        } else {            
             isPaused = false;
             pauseButton.innerText = "pause"
             minusButton.disabled = false;
             plusButton.disabled = false;
             heartButton.disabled = false;
+            myVar = setInterval(timer, 1000);
         }
 })
