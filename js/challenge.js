@@ -5,11 +5,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const pauseBtn= document.getElementById("pause")
     // the abve is for the counter
     const newLike = document.getElementById("heart");
-    const likes = document.getElementsByClassName("likes")[0]
     // the above is for the likes
     const comments = document.getElementById("list");
-    const newCommentContent = document.getElementById("comment-input")
-    const submit = document.getElementById("submit")
     // the above is for the comments
     let speedCounter = setInterval(startCounter, 1000)
     function continueFunction(){
@@ -23,7 +20,6 @@ document.addEventListener("DOMContentLoaded", () => {
             minus.disabled = true;
             plus.disabled = true;
             submit.disabled = true;
-            newCommentForm.disabled = true;
             pauseBtn.removeEventListener("click", pauseCounter)
             pauseBtn.addEventListener("click", playCounter)
     function playCounter() {
@@ -34,7 +30,6 @@ document.addEventListener("DOMContentLoaded", () => {
             minus.disabled = false;
             plus.disabled = false;
             submit.disabled = false;
-            newCommentForm.disabled = false;
             pauseBtn.addEventListener("click", pauseCounter)
             pauseBtn.removeEventListener("click", playCounter)
           };
@@ -61,6 +56,7 @@ function minusCounter() {
     counter.innerHTML--
 };
 function addHearts() {
+    const likes = document.getElementsByClassName("likes")[0];
     const newLi = document.createElement("li")
     newLi.innerText = `${counter.innerText} has been liked`
     likes.appendChild(newLi)
